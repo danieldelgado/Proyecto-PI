@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+	
+	<script src="$javascript_folder/vendor/jquery-1.9.1.min.js"></script>
+	
+	$theme.include($top_head_include)
+	
+	
+</head>
+
+<body class="">
+
+<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+#if ($has_navigation || $is_signed_in)
+	#parse ("$full_templates_path/navigation.vm")
+#end
+
+
+<div id="content">
+	#if ($selectable)
+		$theme.include($content_include)
+	#else
+		$portletDisplay.recycle()
+
+		$portletDisplay.setTitle($the_title)
+
+		$theme.wrapPortlet("portlet.vm", $content_include)
+	#end
+</div>
+
+<footer id="footer" role="contentinfo">
+	<p class="powered-by">
+		#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+	</p>
+</footer>
+	
+<link rel="stylesheet" href="$css_folder/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="$css_folder/font-awesome.min.css">
+<link rel="stylesheet" href="$css_folder/main2.css">
+<link rel="stylesheet" href="$css_folder/sl-slide.css">
+	
+<script src="$javascript_folder/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+<script src="$javascript_folder/vendor/bootstrap.min.js"></script>
+<script src="$javascript_folder/main2.js"></script>
+<script src="$javascript_folder/jquery.ba-cond.min.js"></script>
+<script src="$javascript_folder/jquery.slitslider.js"></script>
+
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+</body>
+
+</html>
